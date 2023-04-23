@@ -1,0 +1,11 @@
+C:\Users\hoops\source\repos\JUNN30057205\WikiInformation\WikiInformation\WikiInformation\bin\Debug\WikiInformation.exe.config
+C:\Users\hoops\source\repos\JUNN30057205\WikiInformation\WikiInformation\WikiInformation\bin\Debug\WikiInformation.exe
+C:\Users\hoops\source\repos\JUNN30057205\WikiInformation\WikiInformation\WikiInformation\bin\Debug\WikiInformation.pdb
+C:\Users\hoops\source\repos\JUNN30057205\WikiInformation\WikiInformation\WikiInformation\obj\Debug\WikiInformation.csproj.AssemblyReference.cache
+C:\Users\hoops\source\repos\JUNN30057205\WikiInformation\WikiInformation\WikiInformation\obj\Debug\WikiInformation.csproj.SuggestedBindingRedirects.cache
+C:\Users\hoops\source\repos\JUNN30057205\WikiInformation\WikiInformation\WikiInformation\obj\Debug\WikiInformation.Properties.Resources.resources
+C:\Users\hoops\source\repos\JUNN30057205\WikiInformation\WikiInformation\WikiInformation\obj\Debug\WikiInformation.Wiki.resources
+C:\Users\hoops\source\repos\JUNN30057205\WikiInformation\WikiInformation\WikiInformation\obj\Debug\WikiInformation.csproj.GenerateResource.cache
+C:\Users\hoops\source\repos\JUNN30057205\WikiInformation\WikiInformation\WikiInformation\obj\Debug\WikiInformation.csproj.CoreCompileInputs.cache
+C:\Users\hoops\source\repos\JUNN30057205\WikiInformation\WikiInformation\WikiInformation\obj\Debug\WikiInformation.exe
+C:\Users\hoops\source\repos\JUNN30057205\WikiInformation\WikiInformation\WikiInformation\obj\Debug\WikiInformation.pdb

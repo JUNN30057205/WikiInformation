@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WikiInformation", "WikiInformation\WikiInformation.csproj", "{F4AFF6DF-5E38-4093-BFA7-67510E603690}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F4AFF6DF-5E38-4093-BFA7-67510E603690}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4AFF6DF-5E38-4093-BFA7-67510E603690}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4AFF6DF-5E38-4093-BFA7-67510E603690}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4AFF6DF-5E38-4093-BFA7-67510E603690}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C9CA84B1-6716-4DBE-B3DD-F47CF1830DDB}
+	EndGlobalSection
+EndGlobal
