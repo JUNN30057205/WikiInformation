@@ -55,9 +55,10 @@
             // ButtonAdd
             // 
             this.ButtonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonAdd.Location = new System.Drawing.Point(287, 42);
+            this.ButtonAdd.Location = new System.Drawing.Point(430, 65);
+            this.ButtonAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ButtonAdd.Name = "ButtonAdd";
-            this.ButtonAdd.Size = new System.Drawing.Size(75, 29);
+            this.ButtonAdd.Size = new System.Drawing.Size(112, 45);
             this.ButtonAdd.TabIndex = 0;
             this.ButtonAdd.Text = "Add";
             this.ButtonAdd.UseVisualStyleBackColor = true;
@@ -66,9 +67,10 @@
             // ButtonEdit
             // 
             this.ButtonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonEdit.Location = new System.Drawing.Point(287, 77);
+            this.ButtonEdit.Location = new System.Drawing.Point(430, 118);
+            this.ButtonEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ButtonEdit.Name = "ButtonEdit";
-            this.ButtonEdit.Size = new System.Drawing.Size(75, 26);
+            this.ButtonEdit.Size = new System.Drawing.Size(112, 40);
             this.ButtonEdit.TabIndex = 1;
             this.ButtonEdit.Text = "Edit";
             this.ButtonEdit.UseVisualStyleBackColor = true;
@@ -77,9 +79,10 @@
             // ButtonDelete
             // 
             this.ButtonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonDelete.Location = new System.Drawing.Point(287, 109);
+            this.ButtonDelete.Location = new System.Drawing.Point(430, 168);
+            this.ButtonDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ButtonDelete.Name = "ButtonDelete";
-            this.ButtonDelete.Size = new System.Drawing.Size(75, 29);
+            this.ButtonDelete.Size = new System.Drawing.Size(112, 45);
             this.ButtonDelete.TabIndex = 2;
             this.ButtonDelete.Text = "Delete";
             this.ButtonDelete.UseVisualStyleBackColor = true;
@@ -88,9 +91,10 @@
             // ButtonSearch
             // 
             this.ButtonSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonSearch.Location = new System.Drawing.Point(691, 45);
+            this.ButtonSearch.Location = new System.Drawing.Point(1036, 69);
+            this.ButtonSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ButtonSearch.Name = "ButtonSearch";
-            this.ButtonSearch.Size = new System.Drawing.Size(75, 30);
+            this.ButtonSearch.Size = new System.Drawing.Size(112, 46);
             this.ButtonSearch.TabIndex = 3;
             this.ButtonSearch.Text = "Search";
             this.ButtonSearch.UseVisualStyleBackColor = true;
@@ -99,9 +103,10 @@
             // ButtonOpen
             // 
             this.ButtonOpen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonOpen.Location = new System.Drawing.Point(599, 371);
+            this.ButtonOpen.Location = new System.Drawing.Point(898, 571);
+            this.ButtonOpen.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ButtonOpen.Name = "ButtonOpen";
-            this.ButtonOpen.Size = new System.Drawing.Size(75, 36);
+            this.ButtonOpen.Size = new System.Drawing.Size(112, 55);
             this.ButtonOpen.TabIndex = 4;
             this.ButtonOpen.Text = "Open";
             this.ButtonOpen.UseVisualStyleBackColor = true;
@@ -109,41 +114,46 @@
             // ButtonSave
             // 
             this.ButtonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonSave.Location = new System.Drawing.Point(691, 371);
+            this.ButtonSave.Location = new System.Drawing.Point(1036, 571);
+            this.ButtonSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ButtonSave.Name = "ButtonSave";
-            this.ButtonSave.Size = new System.Drawing.Size(75, 36);
+            this.ButtonSave.Size = new System.Drawing.Size(112, 55);
             this.ButtonSave.TabIndex = 5;
             this.ButtonSave.Text = "Save";
             this.ButtonSave.UseVisualStyleBackColor = true;
             // 
             // TextBoxName
             // 
-            this.TextBoxName.Location = new System.Drawing.Point(105, 42);
+            this.TextBoxName.Location = new System.Drawing.Point(158, 65);
+            this.TextBoxName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TextBoxName.Name = "TextBoxName";
-            this.TextBoxName.Size = new System.Drawing.Size(157, 20);
+            this.TextBoxName.Size = new System.Drawing.Size(234, 26);
             this.TextBoxName.TabIndex = 6;
             this.TextBoxName.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TextBoxName_MouseDoubleClick);
             // 
             // TextBoxDefitnition
             // 
-            this.TextBoxDefitnition.Location = new System.Drawing.Point(105, 229);
+            this.TextBoxDefitnition.Location = new System.Drawing.Point(158, 352);
+            this.TextBoxDefitnition.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TextBoxDefitnition.Multiline = true;
             this.TextBoxDefitnition.Name = "TextBoxDefitnition";
-            this.TextBoxDefitnition.Size = new System.Drawing.Size(257, 136);
+            this.TextBoxDefitnition.Size = new System.Drawing.Size(384, 207);
             this.TextBoxDefitnition.TabIndex = 7;
             // 
             // TextBoxSearch
             // 
-            this.TextBoxSearch.Location = new System.Drawing.Point(517, 51);
+            this.TextBoxSearch.Location = new System.Drawing.Point(776, 78);
+            this.TextBoxSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TextBoxSearch.Name = "TextBoxSearch";
-            this.TextBoxSearch.Size = new System.Drawing.Size(157, 20);
+            this.TextBoxSearch.Size = new System.Drawing.Size(234, 26);
             this.TextBoxSearch.TabIndex = 8;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(27, 49);
+            this.label1.Location = new System.Drawing.Point(40, 75);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 16);
             this.label1.TabIndex = 9;
@@ -153,7 +163,8 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(27, 78);
+            this.label2.Location = new System.Drawing.Point(40, 120);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 16);
             this.label2.TabIndex = 10;
@@ -163,7 +174,8 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(27, 230);
+            this.label3.Location = new System.Drawing.Point(40, 354);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 16);
             this.label3.TabIndex = 11;
@@ -174,9 +186,11 @@
             this.GroupBox.Controls.Add(this.RadioButtonNonLinear);
             this.GroupBox.Controls.Add(this.RadioButtonLinear);
             this.GroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBox.Location = new System.Drawing.Point(30, 109);
+            this.GroupBox.Location = new System.Drawing.Point(45, 168);
+            this.GroupBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GroupBox.Name = "GroupBox";
-            this.GroupBox.Size = new System.Drawing.Size(232, 100);
+            this.GroupBox.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GroupBox.Size = new System.Drawing.Size(348, 154);
             this.GroupBox.TabIndex = 12;
             this.GroupBox.TabStop = false;
             this.GroupBox.Text = "Structure";
@@ -184,7 +198,8 @@
             // RadioButtonNonLinear
             // 
             this.RadioButtonNonLinear.AutoSize = true;
-            this.RadioButtonNonLinear.Location = new System.Drawing.Point(75, 60);
+            this.RadioButtonNonLinear.Location = new System.Drawing.Point(112, 92);
+            this.RadioButtonNonLinear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RadioButtonNonLinear.Name = "RadioButtonNonLinear";
             this.RadioButtonNonLinear.Size = new System.Drawing.Size(109, 22);
             this.RadioButtonNonLinear.TabIndex = 1;
@@ -195,7 +210,8 @@
             // RadioButtonLinear
             // 
             this.RadioButtonLinear.AutoSize = true;
-            this.RadioButtonLinear.Location = new System.Drawing.Point(75, 34);
+            this.RadioButtonLinear.Location = new System.Drawing.Point(112, 52);
+            this.RadioButtonLinear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RadioButtonLinear.Name = "RadioButtonLinear";
             this.RadioButtonLinear.Size = new System.Drawing.Size(72, 22);
             this.RadioButtonLinear.TabIndex = 0;
@@ -206,9 +222,10 @@
             // ComboBox
             // 
             this.ComboBox.FormattingEnabled = true;
-            this.ComboBox.Location = new System.Drawing.Point(105, 77);
+            this.ComboBox.Location = new System.Drawing.Point(158, 118);
+            this.ComboBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ComboBox.Name = "ComboBox";
-            this.ComboBox.Size = new System.Drawing.Size(157, 21);
+            this.ComboBox.Size = new System.Drawing.Size(234, 28);
             this.ComboBox.TabIndex = 13;
             // 
             // ListView
@@ -219,22 +236,24 @@
             this.columnHeader3,
             this.columnHeader4});
             this.ListView.HideSelection = false;
-            this.ListView.Location = new System.Drawing.Point(377, 81);
+            this.ListView.Location = new System.Drawing.Point(566, 125);
+            this.ListView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ListView.Name = "ListView";
-            this.ListView.Size = new System.Drawing.Size(389, 284);
+            this.ListView.Size = new System.Drawing.Size(582, 435);
             this.ListView.TabIndex = 14;
             this.ListView.UseCompatibleStateImageBehavior = false;
             this.ListView.View = System.Windows.Forms.View.Details;
+            this.ListView.SelectedIndexChanged += new System.EventHandler(this.ListView_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "Name";
-            this.columnHeader1.Width = 95;
+            this.columnHeader1.Width = 118;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Category";
-            this.columnHeader2.Width = 107;
+            this.columnHeader2.Width = 130;
             // 
             // columnHeader3
             // 
@@ -248,9 +267,9 @@
             // 
             // Wiki
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1167, 659);
             this.Controls.Add(this.ListView);
             this.Controls.Add(this.ComboBox);
             this.Controls.Add(this.GroupBox);
@@ -266,6 +285,7 @@
             this.Controls.Add(this.ButtonDelete);
             this.Controls.Add(this.ButtonEdit);
             this.Controls.Add(this.ButtonAdd);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Wiki";
             this.Text = "Wiki";
             this.Load += new System.EventHandler(this.Wiki_Load);

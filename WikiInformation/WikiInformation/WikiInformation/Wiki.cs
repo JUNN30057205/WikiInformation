@@ -65,6 +65,21 @@ namespace WikiInformation
             DisplayListView();
             ClearResetInput();
         }
+        //Display in the ListView 
+        private void DisplayListView()
+        {
+            ListView.Items.Clear();
+            WikiData.Sort();
+            foreach (var information in WikiData)
+            {
+                ListViewItem listView = new ListViewItem(information.GetName());
+                listView.SubItems.Add(information.GetCategory());
+                //listView.SubItems.Add(information.GetStructure());
+                //listView.SubItems.Add(information.GetDefinition());
+                ListView.Items.Add(listView);
+            }
+        }
+
         private string GetStructureRadioButton()
         {
             string rbValue = "";
@@ -185,7 +200,22 @@ namespace WikiInformation
 
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
-            
+            if (ListView.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select an item to delete.");
+                return;
+            }
+            DialogResult = MessageBox.Show("Are you sure you want to delete this item?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (DialogResult == DialogResult.Yes)
+            {
+                foreach (ListViewItem item in ListView.SelectedItems)
+                {
+
+
+                }
+            }
+            DisplayListView();
+
         }
 
         //6.8 a button method that will save the edited record of the currently selected item inthe ListView. 
@@ -200,7 +230,14 @@ namespace WikiInformation
         //6.9 a single custom method that will sort and then display the Name and Category from the wiki information in the list.
         private void SortAndDisplay()
         {
-            
+            WikiData.Sort();
+            ListView.Items.Clear();
+            foreach (Information information in WikiData)
+            {
+                ListViewItem item = new ListViewItem(new String[]
+                   {information.GetName(), information.GetCategory()});
+            }
+
         }
 
         //6.10 a button method that will use the built-in binary search to find a Data Structure name.
@@ -208,45 +245,79 @@ namespace WikiInformation
         //At the end of the search process the search input TextBox must be cliear.
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
-            
-            
+            if (!string.IsNullOrEmpty(TextBoxSearch.Text))
+            {
+                Information findName = new Information();
+                findName.SetName(TextBoxSearch.Text);
+                int found = WikiData.BinarySearch(findName);
+                if (found >= 0)
+                {
+                    ListView.SelectedItems.Clear();
+                    ListView.Items[found].Selected = true;
+                    ListView.Focus();
+                    TextBoxName.Text = WikiData[found].GetName();
+                    ComboBox.Text = WikiData[found].GetCategory();
+                    SetStructureRadioButton(found);
+                    TextBoxDefitnition.Text = WikiData[found].GetDefinition();
+                }
+                else
+                {
+                    MessageBox.Show("Cannot find the Items");
+                    TextBoxSearch.Clear();
+                    TextBoxSearch.Focus();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter item into SearchBox");
+                TextBoxSearch.Clear();
+                TextBoxSearch.Focus();
+            }
         }
         //6.11 a ListView event so a user can select a Data Structure Name from the list of Names and the associated information will be displayed 
         //in the related text boxes combo box and radio button
-        private void DisplayListView()
+        private void ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListView.Items.Clear();
-            WikiData.Sort();
-            foreach(var information in WikiData)
+            if(ListView.SelectedItems.Count > 0)
             {
-                ListViewItem listView = new ListViewItem(information.GetName());
-                listView.SubItems.Add(information.GetCategory());
-                //listView.SubItems.Add(information.GetStructure());
-                //listView.SubItems.Add(information.GetDefinition());
-                ListView.Items.Add(listView);
-            }            
+                               
+                
+
+            }
         }
+
+
 
         //6.12 a custom method that will clear and reset the TextBox, Combobox, and Radio button.
         private void ClearResetInput()
         {
-            //TextBoxName.Clear();            
-            //ComboBox.SelectedIndex == -1; //set a value to the first item in the list.             
-            //foreach(RadioButton rb in GroupBox.Controls.OfType<RadioButton>())
-            //{
-            //    rb.Checked = false;
-            //}
-            //TextBoxDefitnition.Clear();
+            TextBoxName.Clear();            
+            ComboBox.SelectedIndex = -1;              
+            foreach(RadioButton rb in GroupBox.Controls.OfType<RadioButton>())
+            {
+                rb.Checked = false;
+            }
+            TextBoxDefitnition.Clear();
 
         }
 
         //6.13 a double click event on the Name TextBox to clear the TextBoxes, ComboBox, and Radio button.
         private void TextBoxName_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-
+            DialogResult result = MessageBox.Show("Are you sure you want to clear the input?",
+                "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(result == DialogResult.Yes)
+            {
+                TextBoxName.Clear();
+                ComboBox.SelectedIndex = -1;
+                RadioButtonLinear.Checked = false;
+                RadioButtonNonLinear.Checked = false;
+                TextBoxDefitnition.Clear();
+                TextBoxName.Focus();
+            }
+           
         }
 
- 
         //6.14 two buttons for the manual open and save option; this must use a dialog box to selet a file or rename saved file.
         //All Wiki data is stored/retrieved using a binary reader/writer file format
 
