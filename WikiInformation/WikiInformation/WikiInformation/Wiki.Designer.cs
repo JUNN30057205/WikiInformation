@@ -155,7 +155,7 @@
             this.label1.Location = new System.Drawing.Point(40, 75);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 16);
+            this.label1.Size = new System.Drawing.Size(68, 25);
             this.label1.TabIndex = 9;
             this.label1.Text = "Name";
             // 
@@ -166,7 +166,7 @@
             this.label2.Location = new System.Drawing.Point(40, 120);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 16);
+            this.label2.Size = new System.Drawing.Size(100, 25);
             this.label2.TabIndex = 10;
             this.label2.Text = "Category";
             // 
@@ -177,7 +177,7 @@
             this.label3.Location = new System.Drawing.Point(40, 354);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 16);
+            this.label3.Size = new System.Drawing.Size(102, 25);
             this.label3.TabIndex = 11;
             this.label3.Text = "Definition";
             // 
@@ -201,7 +201,7 @@
             this.RadioButtonNonLinear.Location = new System.Drawing.Point(112, 92);
             this.RadioButtonNonLinear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RadioButtonNonLinear.Name = "RadioButtonNonLinear";
-            this.RadioButtonNonLinear.Size = new System.Drawing.Size(109, 22);
+            this.RadioButtonNonLinear.Size = new System.Drawing.Size(168, 33);
             this.RadioButtonNonLinear.TabIndex = 1;
             this.RadioButtonNonLinear.TabStop = true;
             this.RadioButtonNonLinear.Text = "Non-Linear";
@@ -213,7 +213,7 @@
             this.RadioButtonLinear.Location = new System.Drawing.Point(112, 52);
             this.RadioButtonLinear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RadioButtonLinear.Name = "RadioButtonLinear";
-            this.RadioButtonLinear.Size = new System.Drawing.Size(72, 22);
+            this.RadioButtonLinear.Size = new System.Drawing.Size(111, 33);
             this.RadioButtonLinear.TabIndex = 0;
             this.RadioButtonLinear.TabStop = true;
             this.RadioButtonLinear.Text = "Linear";
@@ -244,6 +244,7 @@
             this.ListView.UseCompatibleStateImageBehavior = false;
             this.ListView.View = System.Windows.Forms.View.Details;
             this.ListView.SelectedIndexChanged += new System.EventHandler(this.ListView_SelectedIndexChanged);
+            this.ListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListView_MouseClick);
             // 
             // columnHeader1
             // 

@@ -8,7 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+// ID: 30057205
+// NAME: Jun Sumida
+// Assessment 2 "Wiki Application" 
 namespace WikiInformation
 {
     public partial class Wiki : Form
@@ -115,7 +117,7 @@ namespace WikiInformation
         }
 
         //6.4 ComboBox when the Foam Load method is called.
-        //The six categories must be read from a simple text file.
+        //The six categories must be read from a simple text file ("categories.txt").
         private void Wiki_Load(object sender, EventArgs e)
         {            
             FillComboBox();
@@ -208,12 +210,20 @@ namespace WikiInformation
             DialogResult = MessageBox.Show("Are you sure you want to delete this item?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (DialogResult == DialogResult.Yes)
             {
-                foreach (ListViewItem item in ListView.SelectedItems)
+                //get the selected item(current item)
+                ListViewItem currentItem = ListView.SelectedItems[0];
+                //remove current items from the listview
+                ListView.Items.Remove(currentItem);
+                foreach (Information information in WikiData)
                 {
-
-
+                    if(information.GetName() == currentItem.SubItems[0].Text)
+                    {
+                        WikiData.Remove(information);
+                        break;
+                    }
                 }
             }
+            ClearResetInput();
             DisplayListView();
 
         }
@@ -224,7 +234,33 @@ namespace WikiInformation
 
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
+            if(ListView.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select an item to edit");
+                return;
+            }
+            else
+            {
+                //Update properites with new values (values get from set property)
+                //...SetName(TextBoxName.Text);
+                //...SetCategory(ComboBox.SelectedItem.ToString();
+                if (RadioButtonLinear.Checked)
+                {
+                    //...SetStructure(RadioButtonLinear.Text;
+                }
+                else if (RadioButtonNonLinear.Checked)
+                {
+                    //...SetStructure(RadioButtonNonLinear.Text;
+                }
+                else
+                {
+                    //...SetStructure(default);
+                }
+                //...SetDefinition(TextBoxDefinition.Text);
+            }
 
+            DisplayListView();
+            ClearResetInput();
         }
 
         //6.9 a single custom method that will sort and then display the Name and Category from the wiki information in the list.
@@ -234,8 +270,7 @@ namespace WikiInformation
             ListView.Items.Clear();
             foreach (Information information in WikiData)
             {
-                ListViewItem item = new ListViewItem(new String[]
-                   {information.GetName(), information.GetCategory()});
+                ListViewItem item = new ListViewItem(new String[] {information.GetName(), information.GetCategory()});
             }
 
         }
@@ -276,16 +311,30 @@ namespace WikiInformation
         }
         //6.11 a ListView event so a user can select a Data Structure Name from the list of Names and the associated information will be displayed 
         //in the related text boxes combo box and radio button
+        private void ListView_MouseClick(object sender, MouseEventArgs e)
+        {
+            int selectedItem = ListView.SelectedIndices[0];
+            TextBoxName.Text = WikiData[selectedItem].GetName();
+            ComboBox.Text = WikiData[selectedItem].GetCategory();
+            SetStructureRadioButton(selectedItem);
+            TextBoxDefitnition.Text = WikiData[selectedItem].GetDefinition();
+
+        }
         private void ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(ListView.SelectedItems.Count > 0)
-            {
-                               
-                
-
-            }
+            //if(ListView.SelectedItems.Count > 0)
+            //{
+            //    int selectedItem = ListView.SelectedIndices[0];
+            //    TextBoxName.Text = WikiData[selectedItem].GetName();
+            //    ComboBox.Text= WikiData[selectedItem].GetCategory();
+            //    SetStructureRadioButton(selectedItem);
+            //    TextBoxDefitnition.Text = WikiData[selectedItem].GetDefinition(); 
+            //}
         }
-
+        //*** difference between IndexChange and MouseClick
+        //    MouseClick event occour before selectedIndexChanged event 
+        //    IndexChanged event handler can be respond to a change in selection 
+        //    and do some processing on the selected item.
 
 
         //6.12 a custom method that will clear and reset the TextBox, Combobox, and Radio button.
@@ -317,6 +366,8 @@ namespace WikiInformation
             }
            
         }
+
+     
 
         //6.14 two buttons for the manual open and save option; this must use a dialog box to selet a file or rename saved file.
         //All Wiki data is stored/retrieved using a binary reader/writer file format
