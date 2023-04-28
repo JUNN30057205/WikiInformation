@@ -15,8 +15,8 @@ C:\Users\hoops\Source\Repos\WikiInformation\WikiInformation\WikiInformation\Wiki
 C:\Users\hoops\Source\Repos\WikiInformation\WikiInformation\WikiInformation\WikiInformation\obj\Debug\WikiInformation.csproj.AssemblyReference.cache
 C:\Users\hoops\Source\Repos\WikiInformation\WikiInformation\WikiInformation\WikiInformation\obj\Debug\WikiInformation.csproj.SuggestedBindingRedirects.cache
 C:\Users\hoops\Source\Repos\WikiInformation\WikiInformation\WikiInformation\WikiInformation\obj\Debug\WikiInformation.Properties.Resources.resources
-C:\Users\hoops\Source\Repos\WikiInformation\WikiInformation\WikiInformation\WikiInformation\obj\Debug\WikiInformation.Wiki.resources
 C:\Users\hoops\Source\Repos\WikiInformation\WikiInformation\WikiInformation\WikiInformation\obj\Debug\WikiInformation.csproj.GenerateResource.cache
 C:\Users\hoops\Source\Repos\WikiInformation\WikiInformation\WikiInformation\WikiInformation\obj\Debug\WikiInformation.csproj.CoreCompileInputs.cache
 C:\Users\hoops\Source\Repos\WikiInformation\WikiInformation\WikiInformation\WikiInformation\obj\Debug\WikiInformation.exe
 C:\Users\hoops\Source\Repos\WikiInformation\WikiInformation\WikiInformation\WikiInformation\obj\Debug\WikiInformation.pdb
+C:\Users\hoops\Source\Repos\WikiInformation\WikiInformation\WikiInformation\WikiInformation\obj\Debug\WikiInformation.WikiApplication.resources

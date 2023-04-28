@@ -16,7 +16,7 @@ namespace WikiInformation
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Wiki());
+            Application.Run(new WikiApplication());
         }
     }
 }

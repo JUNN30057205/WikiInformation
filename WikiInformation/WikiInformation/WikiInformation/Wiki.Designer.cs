@@ -1,6 +1,6 @@
 ﻿namespace WikiInformation
 {
-    partial class Wiki
+    partial class WikiApplication
     {
         /// <summary>
         /// Required designer variable.
@@ -91,7 +91,7 @@
             // ButtonSearch
             // 
             this.ButtonSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonSearch.Location = new System.Drawing.Point(1036, 69);
+            this.ButtonSearch.Location = new System.Drawing.Point(837, 69);
             this.ButtonSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ButtonSearch.Name = "ButtonSearch";
             this.ButtonSearch.Size = new System.Drawing.Size(112, 46);
@@ -103,24 +103,26 @@
             // ButtonOpen
             // 
             this.ButtonOpen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonOpen.Location = new System.Drawing.Point(898, 571);
+            this.ButtonOpen.Location = new System.Drawing.Point(717, 571);
             this.ButtonOpen.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ButtonOpen.Name = "ButtonOpen";
             this.ButtonOpen.Size = new System.Drawing.Size(112, 55);
             this.ButtonOpen.TabIndex = 4;
             this.ButtonOpen.Text = "Open";
             this.ButtonOpen.UseVisualStyleBackColor = true;
+            this.ButtonOpen.Click += new System.EventHandler(this.ButtonOpen_Click);
             // 
             // ButtonSave
             // 
             this.ButtonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonSave.Location = new System.Drawing.Point(1036, 571);
+            this.ButtonSave.Location = new System.Drawing.Point(837, 571);
             this.ButtonSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ButtonSave.Name = "ButtonSave";
             this.ButtonSave.Size = new System.Drawing.Size(112, 55);
             this.ButtonSave.TabIndex = 5;
             this.ButtonSave.Text = "Save";
             this.ButtonSave.UseVisualStyleBackColor = true;
+            this.ButtonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
             // TextBoxName
             // 
@@ -142,7 +144,7 @@
             // 
             // TextBoxSearch
             // 
-            this.TextBoxSearch.Location = new System.Drawing.Point(776, 78);
+            this.TextBoxSearch.Location = new System.Drawing.Point(595, 84);
             this.TextBoxSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TextBoxSearch.Name = "TextBoxSearch";
             this.TextBoxSearch.Size = new System.Drawing.Size(234, 26);
@@ -239,7 +241,7 @@
             this.ListView.Location = new System.Drawing.Point(566, 125);
             this.ListView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ListView.Name = "ListView";
-            this.ListView.Size = new System.Drawing.Size(582, 435);
+            this.ListView.Size = new System.Drawing.Size(383, 435);
             this.ListView.TabIndex = 14;
             this.ListView.UseCompatibleStateImageBehavior = false;
             this.ListView.View = System.Windows.Forms.View.Details;
@@ -259,18 +261,18 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "Sturcture";
-            this.columnHeader3.Width = 91;
+            this.columnHeader3.Width = 0;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Definition";
-            this.columnHeader4.Width = 100;
+            this.columnHeader4.Width = 0;
             // 
-            // Wiki
+            // WikiApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1167, 659);
+            this.ClientSize = new System.Drawing.Size(997, 659);
             this.Controls.Add(this.ListView);
             this.Controls.Add(this.ComboBox);
             this.Controls.Add(this.GroupBox);
@@ -287,8 +289,9 @@
             this.Controls.Add(this.ButtonEdit);
             this.Controls.Add(this.ButtonAdd);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "Wiki";
-            this.Text = "Wiki";
+            this.Name = "WikiApplication";
+            this.Text = "Wiki Application";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Wiki_FormClosing);
             this.Load += new System.EventHandler(this.Wiki_Load);
             this.GroupBox.ResumeLayout(false);
             this.GroupBox.PerformLayout();
