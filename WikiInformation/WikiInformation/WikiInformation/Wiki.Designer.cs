@@ -49,7 +49,10 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.GroupBox.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // ButtonAdd
@@ -157,7 +160,7 @@
             this.label1.Location = new System.Drawing.Point(40, 75);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 25);
+            this.label1.Size = new System.Drawing.Size(48, 16);
             this.label1.TabIndex = 9;
             this.label1.Text = "Name";
             // 
@@ -168,7 +171,7 @@
             this.label2.Location = new System.Drawing.Point(40, 120);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 25);
+            this.label2.Size = new System.Drawing.Size(70, 16);
             this.label2.TabIndex = 10;
             this.label2.Text = "Category";
             // 
@@ -179,7 +182,7 @@
             this.label3.Location = new System.Drawing.Point(40, 354);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 25);
+            this.label3.Size = new System.Drawing.Size(72, 16);
             this.label3.TabIndex = 11;
             this.label3.Text = "Definition";
             // 
@@ -203,7 +206,7 @@
             this.RadioButtonNonLinear.Location = new System.Drawing.Point(112, 92);
             this.RadioButtonNonLinear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RadioButtonNonLinear.Name = "RadioButtonNonLinear";
-            this.RadioButtonNonLinear.Size = new System.Drawing.Size(168, 33);
+            this.RadioButtonNonLinear.Size = new System.Drawing.Size(109, 22);
             this.RadioButtonNonLinear.TabIndex = 1;
             this.RadioButtonNonLinear.TabStop = true;
             this.RadioButtonNonLinear.Text = "Non-Linear";
@@ -215,7 +218,7 @@
             this.RadioButtonLinear.Location = new System.Drawing.Point(112, 52);
             this.RadioButtonLinear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RadioButtonLinear.Name = "RadioButtonLinear";
-            this.RadioButtonLinear.Size = new System.Drawing.Size(111, 33);
+            this.RadioButtonLinear.Size = new System.Drawing.Size(72, 22);
             this.RadioButtonLinear.TabIndex = 0;
             this.RadioButtonLinear.TabStop = true;
             this.RadioButtonLinear.Text = "Linear";
@@ -245,7 +248,6 @@
             this.ListView.TabIndex = 14;
             this.ListView.UseCompatibleStateImageBehavior = false;
             this.ListView.View = System.Windows.Forms.View.Details;
-            this.ListView.SelectedIndexChanged += new System.EventHandler(this.ListView_SelectedIndexChanged);
             this.ListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListView_MouseClick);
             // 
             // columnHeader1
@@ -268,11 +270,30 @@
             this.columnHeader4.Text = "Definition";
             this.columnHeader4.Width = 0;
             // 
+            // statusStrip
+            // 
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel});
+            this.statusStrip.Location = new System.Drawing.Point(0, 648);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(984, 22);
+            this.statusStrip.TabIndex = 15;
+            this.statusStrip.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripStatusLabel.ForeColor = System.Drawing.Color.Black;
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(61, 17);
+            this.toolStripStatusLabel.Text = "Message";
+            // 
             // WikiApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(997, 659);
+            this.ClientSize = new System.Drawing.Size(984, 670);
+            this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.ListView);
             this.Controls.Add(this.ComboBox);
             this.Controls.Add(this.GroupBox);
@@ -295,6 +316,8 @@
             this.Load += new System.EventHandler(this.Wiki_Load);
             this.GroupBox.ResumeLayout(false);
             this.GroupBox.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -323,6 +346,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.StatusStrip statusStrip;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
     }
 }
 

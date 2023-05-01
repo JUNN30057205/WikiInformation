@@ -28,27 +28,26 @@ namespace WikiInformation
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
             //create object for adding new information.
-            Information newInfo = new Information();
+            Information newInfo = new Information();           
+
+            //ckeck null or empty in boxes
+            if (string.IsNullOrEmpty(TextBoxName.Text))
+            {
+                toolStripStatusLabel.Text = "Please enter items in TextBoxes.";
+            }            
             //add newName
             if (!ValidName(TextBoxName.Text))
             {
-                MessageBox.Show("This name already exists in the data. \nPlease enter a different name.",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                toolStripStatusLabel.Text = "This name already exists in the data.";                
                 return;
             }
             else
-            {
-                newInfo.SetName(TextBoxName.Text);
-                //Information addName = new Information();
-                //addName.SetName(TextBoxName.Text);
-                //addName.SetCategory(ComboBox.SelectedItem.ToString());
-                //addName.SetStructure(GetStructureRadioButton());
-                //addName.SetDefinition(TextBoxDefitnition.Text);
-                //WikiData.Add(addName);
+            {                
+                newInfo.SetName(TextBoxName.Text);                
             }
-            //add newSelectedCategory
-            newInfo.SetCategory(ComboBox.SelectedItem.ToString());
-            //add newSelectedRadioButton
+            //add newSelectedCategory            
+            newInfo.SetCategory(ComboBox.Text);
+            //add newSelectedRadioButton            
             if (RadioButtonLinear.Checked)
             {
                 newInfo.SetStructure(RadioButtonLinear.Text);
@@ -59,28 +58,21 @@ namespace WikiInformation
             }
             else
             {
-                newInfo.SetStructure(default);
+                return;
             }
-            //add newDefinition
+            //add newDefinition            
             newInfo.SetDefinition(TextBoxDefitnition.Text);
             //add into WikiData
-            Wiki.Add(newInfo);            
+            Wiki.Add(newInfo);
+            toolStripStatusLabel.Text = "Information added to Wiki Database";
             DisplayListView();
             ClearResetInput();
         }
         //Display in the ListView 
         private void DisplayListView()
         {
-            ListView.Items.Clear();
-            Wiki.Sort();
-            foreach (var info in Wiki)
-            {
-                ListViewItem listView = new ListViewItem(info.GetName());
-                listView.SubItems.Add(info.GetCategory());
-                listView.SubItems.Add(info.GetStructure());
-                listView.SubItems.Add(info.GetDefinition());
-                ListView.Items.Add(listView);
-            }
+            ListView.Items.Clear();            
+            SortAndDisplay();            
         }
 
         private string GetStructureRadioButton()
@@ -99,8 +91,7 @@ namespace WikiInformation
                 }
             }
             return rbValue;        
-        }
-       
+        }       
         private void SetStructureRadioButton(int item)
         {
             foreach(RadioButton radioButton in GroupBox.Controls.OfType<RadioButton>())
@@ -116,7 +107,6 @@ namespace WikiInformation
             }
         }
         #endregion
-
         //6.4 ComboBox when the Foam Load method is called.
         //The six categories must be read from a simple text file ("categories.txt").
         #region Wiki_Load
@@ -131,7 +121,6 @@ namespace WikiInformation
             ComboBox.SelectedIndex = 0;            
         }
         #endregion
-
         //6.5 a custom ValidName method which will take a parameter string value from the TextBox Name and return a Boolean 
         //after checking for a duplicates. Use the built in List<T> method "Exixts" to answer this requirement.
         #region ValidName method
@@ -147,6 +136,7 @@ namespace WikiInformation
         #endregion
         //6.6 two methods to highligh and return the values from the Radio button GroupBox.
         //the first method must return a string value from the selected radio button (Linear or Non-Linear).
+        #region RadioButton Highlights
         private string GetSelectedRadioButton()
         {
             if (RadioButtonLinear.Checked)
@@ -201,68 +191,87 @@ namespace WikiInformation
                 RadioButtonNonLinear.ForeColor = Color.Black;
             }
         }
+        #endregion
         //6.7 a button method that will delete the currently selected record in the ListView.
         //Ensure the user has the option to backout of this action by using a dialog box.
         //Display on update version of the sorted list of the end of this process.
-
+        #region Button Delete
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
-            if (ListView.SelectedItems.Count == 0)
+            try
             {
-                MessageBox.Show("Please select an item to delete.");
-                return;
-            }
-            DialogResult = MessageBox.Show("Are you sure you want to delete this item?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (DialogResult == DialogResult.Yes)
-            {
-                //get the selected item(current item)
-                ListViewItem currentItem = ListView.SelectedItems[0];
-                //remove current items from the listview
-                ListView.Items.Remove(currentItem);
-                foreach (Information info in Wiki)
+                if (ListView.SelectedItems.Count == 0)
                 {
-                    if(info.GetName() == currentItem.SubItems[0].Text)
+                    toolStripStatusLabel.Text = "Please select an item to delete.";
+                    return;
+                }
+                DialogResult = MessageBox.Show("Are you sure you want to delete this item?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (DialogResult == DialogResult.Yes)
+                {
+                    //get the selected item(current item)
+                    ListViewItem currentItem = ListView.SelectedItems[0];
+                    //remove current items from the listview
+                    ListView.Items.Remove(currentItem);
+                    foreach (Information info in Wiki)
                     {
-                        Wiki.Remove(info);
-                        break;
+                        if (info.GetName() == currentItem.SubItems[0].Text)
+                        {
+                            Wiki.Remove(info);
+                            break;
+                        }
                     }
                 }
+                toolStripStatusLabel.Text = "Deleted items in Wiki Database.";
+                ClearResetInput();
+                DisplayListView();
             }
-            ClearResetInput();
-            DisplayListView();
-        }
-
+            catch (Exception)
+            {
+                toolStripStatusLabel.Text = "Error occured while deleting the items";
+            }
+        }     
+        #endregion
         //6.8 a button method that will save the edited record of the currently selected item in the ListView. 
         //All the changes in the input controls will be written back to the list.
         //Display an updated version of the sorted list at the end of this process.
+        #region Button Edit
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
-            Information currentItem = new Information();
-            currentItem.SetName(TextBoxName.Text);
-            currentItem.SetStructure(GetStructureRadioButton());
-            currentItem.SetCategory(ComboBox.Text);
-            currentItem.SetDefinition(TextBoxDefitnition.Text);
-
-            if(ListView.SelectedItems.Count == 0)
+            try
             {
-                MessageBox.Show("Please select an item to edit");
-                return;
+                Information currentItem = new Information();
+                currentItem.SetName(TextBoxName.Text);
+                currentItem.SetStructure(GetStructureRadioButton());
+                currentItem.SetCategory(ComboBox.Text);
+                currentItem.SetDefinition(TextBoxDefitnition.Text);
+
+                if (ListView.SelectedItems.Count == 0)
+                {
+                    toolStripStatusLabel.Text = "Please select an item to edit";
+                    return;
+                }
+                else
+                {
+                    int index = ListView.SelectedIndices[0];
+                    //Update properites with new values (values get from set property)
+                    Wiki[index].SetName(currentItem.GetName());
+                    Wiki[index].SetCategory(currentItem.GetCategory());
+                    Wiki[index].SetStructure(GetStructureRadioButton());
+                    Wiki[index].SetDefinition(TextBoxDefitnition.Text);
+
+                    toolStripStatusLabel.Text = "Edited the information in Wiki Database.";
+                    DisplayListView();
+                    ClearResetInput();
+                }
             }
-            else
+            catch (Exception)
             {
-                int index = ListView.SelectedIndices[0];
-                //Update properites with new values (values get from set property)
-                Wiki[index].SetName(currentItem.GetName());
-                Wiki[index].SetCategory(currentItem.GetCategory());
-                Wiki[index].SetStructure(GetStructureRadioButton());
-                Wiki[index].SetDefinition(TextBoxDefitnition.Text);
-                
-                DisplayListView();
-                ClearResetInput();
-            }            
+                toolStripStatusLabel.Text = "Error occured while editing the items";
+            }                    
         }
-
+        #endregion
         //6.9 a single custom method that will sort and then display the Name and Category from the wiki information in the list.
+        #region Sort and Display
         private void SortAndDisplay()
         {
             Wiki.Sort();
@@ -275,10 +284,11 @@ namespace WikiInformation
             }
 
         }
-
+        #endregion
         //6.10 a button method that will use the built-in binary search to find a Data Structure name.
         //If the record is found the associated details will populate the appropriate input controls and highlight the name in the ListView.
         //At the end of the search process the search input TextBox must be cliear.
+        #region Built in binary search
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(TextBoxSearch.Text))
@@ -289,29 +299,34 @@ namespace WikiInformation
                 if (found >= 0)
                 {
                     ListView.SelectedItems.Clear();
-                    ListView.Items[found].Selected = true;
+                    ListView.Items[found].Selected = true;                    
                     ListView.Focus();
                     TextBoxName.Text = Wiki[found].GetName();
                     ComboBox.Text = Wiki[found].GetCategory();
                     SetStructureRadioButton(found);
-                    TextBoxDefitnition.Text = Wiki[found].GetDefinition();
+                    TextBoxDefitnition.Text = Wiki[found].GetDefinition();                    
+                    TextBoxSearch.Clear();
+                    TextBoxSearch.Focus();
+                    toolStripStatusLabel.Text = "Items found in Wiki Database";
                 }
                 else
                 {
-                    MessageBox.Show("Cannot find the Items");
+                    toolStripStatusLabel.Text = "Cannot find the Items in Wiki Database";
                     TextBoxSearch.Clear();
                     TextBoxSearch.Focus();
                 }
             }
             else
             {
-                MessageBox.Show("Please enter item into SearchBox");
+                toolStripStatusLabel.Text = "Please enter item into SearchBox";
                 TextBoxSearch.Clear();
                 TextBoxSearch.Focus();
             }
         }
+        #endregion
         //6.11 a ListView event so a user can select a Data Structure Name from the list of Names and the associated information will be displayed 
         //in the related text boxes combo box and radio button
+        #region ListView Mouse Click
         private void ListView_MouseClick(object sender, MouseEventArgs e)
         {
             int selectedItem = ListView.SelectedIndices[0];
@@ -321,24 +336,9 @@ namespace WikiInformation
             TextBoxDefitnition.Text = Wiki[selectedItem].GetDefinition();
 
         }
-        private void ListView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //if(ListView.SelectedItems.Count > 0)
-            //{
-            //    int selectedItem = ListView.SelectedIndices[0];
-            //    TextBoxName.Text = WikiData[selectedItem].GetName();
-            //    ComboBox.Text= WikiData[selectedItem].GetCategory();
-            //    SetStructureRadioButton(selectedItem);
-            //    TextBoxDefitnition.Text = WikiData[selectedItem].GetDefinition(); 
-            //}
-        }
-        //*** difference between IndexChange and MouseClick
-        //    MouseClick event occour before selectedIndexChanged event 
-        //    IndexChanged event handler can be respond to a change in selection 
-        //    and do some processing on the selected item.
-
-
+        #endregion
         //6.12 a custom method that will clear and reset the TextBox, Combobox, and Radio button.
+        #region Clear and Reset 
         private void ClearResetInput()
         {
             TextBoxName.Clear();            
@@ -348,10 +348,10 @@ namespace WikiInformation
                 rb.Checked = false;
             }
             TextBoxDefitnition.Clear();
-
         }
-
+        #endregion
         //6.13 a double click event on the Name TextBox to clear the TextBoxes, ComboBox, and Radio button.
+        #region Clear method (Mouse Double Click)
         private void TextBoxName_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure you want to clear the input?",
@@ -364,10 +364,14 @@ namespace WikiInformation
                 RadioButtonNonLinear.Checked = false;
                 TextBoxDefitnition.Clear();
                 TextBoxName.Focus();
-            }           
+
+                toolStripStatusLabel.Text = "Items Cleared in all Textboxes.";
+            }
         }
+        #endregion
         //6.14 two buttons for the manual open and save option; this must use a dialog box to selet a file or rename saved file.
         //All Wiki data is stored/retrieved using a binary reader/writer file format
+        #region Button Save and Open
         private void ButtonSave_Click(object sender, EventArgs e)
         {
             string fileName = "WikiInfromation.bin";
@@ -376,16 +380,16 @@ namespace WikiInformation
             saveFileDialog.Filter = "Binary files (*.bin, *.dat)| *.bin; *.dat";
             saveFileDialog.Title = "Save your dat file";
 
-            DialogResult result = saveFileDialog.ShowDialog();            
-            if (result == DialogResult.Cancel)
-            {
-                fileName = saveFileDialog.FileName;
-            }
+            DialogResult result = saveFileDialog.ShowDialog();
             if(result == DialogResult.OK)
             {
+                fileName = saveFileDialog.FileName;
                 SaveFile(fileName);
             }
-            
+            else if (result == DialogResult.Cancel)
+            {
+                return;
+            }            
         }
         private void SaveFile(string fileName)
         {
@@ -403,13 +407,12 @@ namespace WikiInformation
                             writer.Write(info.GetDefinition());
                         }
                     }
-
                 }
-
             }
             catch (IOException)
             {
-                MessageBox.Show("Could not save Wiki information", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                toolStripStatusLabel.Text = "Could not save Wiki information";
+                //MessageBox.Show("Could not save Wiki information", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -424,6 +427,11 @@ namespace WikiInformation
             if(result == DialogResult.OK)
             {
                 fileName = openFileDialog.FileName;
+                toolStripStatusLabel.Text = "Open the file successfully";
+            }
+            else if (result == DialogResult.Cancel)
+            {
+                return;
             }
             try
             {
@@ -447,14 +455,17 @@ namespace WikiInformation
             }
             catch (IOException)
             {
-                MessageBox.Show("Could not open Wiki Information","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-            }
+                toolStripStatusLabel.Text = "Could not open Wiki Information";
+                //MessageBox.Show("Could not open Wiki Information","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }            
         }
-
+        #endregion
         //6.15 The Wiki application will save data when the form closes
+        #region Form Closing
         private void Wiki_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveFile("WikiInformation.bin");
         }
+        #endregion
     }
 }

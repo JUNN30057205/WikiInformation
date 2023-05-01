@@ -28,9 +28,18 @@ namespace WikiInformation
             else
                 name = newName; 
         }
-        public void SetCategory(string newCategory) { category = newCategory; }
-        public void SetStructure(string newStructure) { structure = newStructure; }
-        public void SetDefinition(string newDefinition) { definition = newDefinition; }
+        public void SetCategory(string newCategory)
+        { 
+            category = newCategory;
+        }
+        public void SetStructure(string newStructure)
+        {
+            structure = newStructure; 
+        }
+        public void SetDefinition(string newDefinition)
+        { 
+            definition = newDefinition; 
+        }
 
         public int CompareTo(Information other)
         {
