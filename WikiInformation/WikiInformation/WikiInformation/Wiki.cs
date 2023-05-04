@@ -8,11 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 // ID: 30057205
 // NAME: Jun Sumida
 // Assessment 2 "Wiki Application" 
 namespace WikiInformation
 {
+    [Serializable]
+
     public partial class WikiApplication : Form
     {
         public WikiApplication()
@@ -22,11 +25,25 @@ namespace WikiInformation
         //6.2 a global List<T> of type Information called Wiki.
         List<Information> Wiki = new List<Information>();
 
+        /* ABOUT TraceListener
+         * TraceListener classes: used for logging and debugging purposes. 
+           System.Diagnostics namespace at the top
+           Create an instance of the 'TraceListener' class to define how to output the tracing messages.
+           The built-in Listener classes (TextWriterTraceListener) or custom listener.
+           Trace.Listeners.Add() method is call once in an application.
+           Trace.WriteLine("..."); to write messages at the right place in code.
+           ***Trace.Close(); methods need to call at the end in the form closing method.
+         */
+        Stream myTraceTextFile = File.Create("TestFile.txt");
+        TextWriterTraceListener myTraceListener = new TextWriterTraceListener();
+        //TextWriterTraceListener myTraceLisetner = new TextWriterTraceListener(myTraceLisetner);
+
         //6.3 a button method to ADD a new item to the list (TextBox for the Name input),
         //ComboBox for the Category Radio group for the Structure, Multiline TextBox for the Definition.      
         #region Add
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
+            Trace.Listeners.Add(myTraceListener);
             //create object for adding new information.
             Information newInfo = new Information();           
 
@@ -66,6 +83,11 @@ namespace WikiInformation
             Wiki.Add(newInfo);
             toolStripStatusLabel.Text = "Information added to Wiki Database";
             DisplayListView();
+            ButtonSave.Enabled = true;
+            ButtonSearch.Enabled = true;
+            ButtonEdit.Enabled = true;
+            ButtonDelete.Enabled = true;
+            Trace.WriteLine(DateTime.Now.ToString() + " ButtonAdd Clicked.");
             ClearResetInput();
         }
         //Display in the ListView 
@@ -105,14 +127,26 @@ namespace WikiInformation
                     radioButton.Checked = false;
                 }
             }
+           
         }
         #endregion
         //6.4 ComboBox when the Foam Load method is called.
         //The six categories must be read from a simple text file ("categories.txt").
         #region Wiki_Load
         private void Wiki_Load(object sender, EventArgs e)
-        {            
+        {
+            string timeNow = DateTime.Now.ToString();
+            Trace.TraceInformation(timeNow + " Form Lorded1.");
+            Trace.WriteLine(timeNow + "Form Lorded2.");
+            Trace.WriteLine(timeNow + "Form Lorded3.");
+            Trace.WriteLine(timeNow + "Form Lorded4.");
+            Trace.WriteLine(timeNow + "Form Lorded5.");
+
             FillComboBox();
+            ButtonSave.Enabled = false;
+            ButtonSearch.Enabled = false;
+            ButtonEdit.Enabled = false;
+            ButtonDelete.Enabled = false;
         }
         private void FillComboBox()
         {
@@ -127,8 +161,10 @@ namespace WikiInformation
         private bool ValidName(string name)
         {
             bool validName = Wiki.Exists(Information => Information.GetName() == name);
+            Trace.WriteLine("Method name ValidName");
             if (validName)
             {
+                Trace.WriteLine("This is false");
                 return false;
             }
             return true;
@@ -452,6 +488,10 @@ namespace WikiInformation
                     }
                 }
                 DisplayListView();
+                ButtonEdit.Enabled = true;
+                ButtonDelete.Enabled = true;
+                ButtonSave.Enabled = true;
+                ButtonSearch.Enabled = true;                
             }
             catch (IOException)
             {
@@ -465,6 +505,7 @@ namespace WikiInformation
         private void Wiki_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveFile("WikiInformation.bin");
+            Trace.Close();
         }
         #endregion
     }
