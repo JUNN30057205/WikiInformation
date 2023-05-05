@@ -1,12 +1,49 @@
-WikiInformation.exe Information: 0 : 5/05/2023 2:17:15 AM Form Lorded1.
-5/05/2023 2:17:15 AMForm Lorded2.
-5/05/2023 2:17:15 AMForm Lorded3.
-5/05/2023 2:17:15 AMForm Lorded4.
-5/05/2023 2:17:15 AMForm Lorded5.
-WikiInformation.exe Information: 0 : 5/05/2023 2:48:00 AM Form Lorded1.
-5/05/2023 2:48:00 AMForm Lorded2.
-5/05/2023 2:48:00 AMForm Lorded3.
-5/05/2023 2:48:00 AMForm Lorded4.
-5/05/2023 2:48:00 AMForm Lorded5.
-Method name ValidName
-5/05/2023 2:48:11 AM ButtonAdd Clicked.
+WikiInformation.exe Information: 0 : 5/05/2023 11:12:34 AM Form Lorded1.
+5/05/2023 11:13:09 AMMethod ValidName.
+5/05/2023 11:13:09 AM ButtonAdd Clicked.
+5/05/2023 11:13:21 AMMethod ValidName.
+5/05/2023 11:13:31 AMMethod ValidName.
+5/05/2023 11:13:31 AM ButtonAdd Clicked.
+5/05/2023 11:13:38 AMMethod ValidName.
+This is false
+5/05/2023 11:13:43 AMButtonDelete clicked.
+Items Deleted in Wiki
+5/05/2023 11:14:10 AMButtonEdit clicked.
+Edit the information in Database.
+WikiInformation.exe Information: 0 : 5/05/2023 11:17:17 AMWiki Application Form.
+5/05/2023 11:17:44 AMMethod ValidName.
+This is false
+5/05/2023 11:17:54 AMButtonEdit clicked.
+Edit the information in Database.
+5/05/2023 11:17:58 AMButtonDelete clicked.
+Canceled the Deletioin
+5/05/2023 11:18:18 AMMethod ValidName.
+5/05/2023 11:18:18 AM ButtonAdd Clicked.
+5/05/2023 11:18:28 AMButtonDelete clicked.
+Items Deleted in Wiki
+WikiInformation.exe Information: 0 : 5/05/2023 11:20:51 AM Wiki Application Form.
+WikiInformation.exe Information: 0 : 5/05/2023 11:21:37 AM Wiki Application Form.
+WikiInformation.exe Information: 0 : 5/05/2023 11:21:53 AM Wiki Application Form.
+WikiInformation.exe Information: 0 : 5/05/2023 11:22:18 AM Wiki Application Form.
+5/05/2023 11:22:44 AMMethod ValidName.
+This is false
+5/05/2023 11:23:07 AMButtonEdit clicked.
+Edit the information in Database.
+5/05/2023 11:23:32 AMMethod ValidName.
+5/05/2023 11:23:32 AM ButtonAdd Clicked.
+5/05/2023 11:23:39 AMButtonDelete clicked.
+Items Deleted in Wiki
+WikiInformation.exe Information: 0 : 5/05/2023 11:23:51 AM Wiki Application Form.
+WikiInformation.exe Information: 0 : 5/05/2023 11:24:49 AM Wiki Application Form.
+WikiInformation.exe Information: 0 : 5/05/2023 11:25:38 AM Wiki Application Form.
+5/05/2023 11:26:18 AMMethod ValidName.
+5/05/2023 11:26:18 AM ButtonAdd Clicked.
+5/05/2023 11:26:34 AMMethod ValidName.
+This is false
+5/05/2023 11:26:42 AMMethod ValidName.
+This is false
+5/05/2023 11:26:46 AMButtonEdit clicked.
+5/05/2023 11:26:54 AMButtonEdit clicked.
+Edit the information in Database.
+5/05/2023 11:27:02 AMButtonDelete clicked.
+Items Deleted in Wiki

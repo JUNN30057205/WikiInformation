@@ -13,31 +13,28 @@ using System.Diagnostics;
 // NAME: Jun Sumida
 // Assessment 2 "Wiki Application" 
 namespace WikiInformation
-{
-    [Serializable]
-
+{  
     public partial class WikiApplication : Form
     {
         public WikiApplication()
         {
             InitializeComponent();
-        }
-        //6.2 a global List<T> of type Information called Wiki.
-        List<Information> Wiki = new List<Information>();
+        }        
 
-        /* ABOUT TraceListener
+        /* ABOUT TraceListener:
          * TraceListener classes: used for logging and debugging purposes. 
-           System.Diagnostics namespace at the top
+           - System.Diagnostics namespace at the top
            Create an instance of the 'TraceListener' class to define how to output the tracing messages.
            The built-in Listener classes (TextWriterTraceListener) or custom listener.
            Trace.Listeners.Add() method is call once in an application.
            Trace.WriteLine("..."); to write messages at the right place in code.
            ***Trace.Close(); methods need to call at the end in the form closing method.
          */
-        Stream myTraceTextFile = File.Create("TestFile.txt");
-        TextWriterTraceListener myTraceListener = new TextWriterTraceListener();
-        //TextWriterTraceListener myTraceLisetner = new TextWriterTraceListener(myTraceLisetner);
+        static Stream myTraceTestFile = File.Create("TestFile.txt");
+        TextWriterTraceListener myTraceListener = new TextWriterTraceListener(myTraceTestFile);        
 
+        //6.2 a global List<T> of type Information called Wiki.
+        List<Information> Wiki = new List<Information>();
         //6.3 a button method to ADD a new item to the list (TextBox for the Name input),
         //ComboBox for the Category Radio group for the Structure, Multiline TextBox for the Definition.      
         #region Add
@@ -82,13 +79,14 @@ namespace WikiInformation
             //add into WikiData
             Wiki.Add(newInfo);
             toolStripStatusLabel.Text = "Information added to Wiki Database";
+            
+            Trace.WriteLine(DateTime.Now.ToString() + " ButtonAdd Clicked.");
+            ClearResetInput();
             DisplayListView();
             ButtonSave.Enabled = true;
             ButtonSearch.Enabled = true;
             ButtonEdit.Enabled = true;
             ButtonDelete.Enabled = true;
-            Trace.WriteLine(DateTime.Now.ToString() + " ButtonAdd Clicked.");
-            ClearResetInput();
         }
         //Display in the ListView 
         private void DisplayListView()
@@ -126,8 +124,7 @@ namespace WikiInformation
                 {
                     radioButton.Checked = false;
                 }
-            }
-           
+            }           
         }
         #endregion
         //6.4 ComboBox when the Foam Load method is called.
@@ -136,11 +133,7 @@ namespace WikiInformation
         private void Wiki_Load(object sender, EventArgs e)
         {
             string timeNow = DateTime.Now.ToString();
-            Trace.TraceInformation(timeNow + " Form Lorded1.");
-            Trace.WriteLine(timeNow + "Form Lorded2.");
-            Trace.WriteLine(timeNow + "Form Lorded3.");
-            Trace.WriteLine(timeNow + "Form Lorded4.");
-            Trace.WriteLine(timeNow + "Form Lorded5.");
+            Trace.TraceInformation(timeNow + " Wiki Application Form.");            
 
             FillComboBox();
             ButtonSave.Enabled = false;
@@ -151,8 +144,10 @@ namespace WikiInformation
         private void FillComboBox()
         {
             string[] categories = File.ReadAllLines("categories.txt");
-            ComboBox.Items.AddRange(categories);
-            ComboBox.SelectedIndex = 0;            
+            for(int x = 0; x < categories.Length; x++)
+            {
+                ComboBox.Items.Add(categories[x]);
+            }                      
         }
         #endregion
         //6.5 a custom ValidName method which will take a parameter string value from the TextBox Name and return a Boolean 
@@ -161,7 +156,8 @@ namespace WikiInformation
         private bool ValidName(string name)
         {
             bool validName = Wiki.Exists(Information => Information.GetName() == name);
-            Trace.WriteLine("Method name ValidName");
+            Trace.Listeners.Add(myTraceListener);
+            Trace.WriteLine(DateTime.Now.ToString() + "Method ValidName.");            
             if (validName)
             {
                 Trace.WriteLine("This is false");
@@ -234,8 +230,10 @@ namespace WikiInformation
         #region Button Delete
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
+            Trace.Listeners.Add(myTraceListener);
             try
             {
+                Trace.WriteLine(DateTime.Now.ToString() + "ButtonDelete clicked.");
                 if (ListView.SelectedItems.Count == 0)
                 {
                     toolStripStatusLabel.Text = "Please select an item to delete.";
@@ -247,23 +245,31 @@ namespace WikiInformation
                     //get the selected item(current item)
                     ListViewItem currentItem = ListView.SelectedItems[0];
                     //remove current items from the listview
-                    ListView.Items.Remove(currentItem);
+                    ListView.Items.Remove(currentItem);                   
                     foreach (Information info in Wiki)
                     {
+                        Trace.WriteLine("Items Deleted in Wiki");                        
                         if (info.GetName() == currentItem.SubItems[0].Text)
                         {
+                            //could change to RemoveAt(info);                            
                             Wiki.Remove(info);
                             break;
                         }
                     }
+                    toolStripStatusLabel.Text = "Deleted items in Wiki Database.";
+                    
+                } else
+                {
+                    Trace.WriteLine("Canceled the Deletioin");
+                    toolStripStatusLabel.Text = "Canceled the Deletion.";
                 }
-                toolStripStatusLabel.Text = "Deleted items in Wiki Database.";
                 ClearResetInput();
                 DisplayListView();
             }
             catch (Exception)
             {
-                toolStripStatusLabel.Text = "Error occured while deleting the items";
+                toolStripStatusLabel.Text = "Error occured while deleting the items.";
+                //Trace.WriteLine("Error occured while deliting the items.");
             }
         }     
         #endregion
@@ -273,6 +279,7 @@ namespace WikiInformation
         #region Button Edit
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
+            Trace.Listeners.Add(myTraceListener);
             try
             {
                 Information currentItem = new Information();
@@ -281,6 +288,7 @@ namespace WikiInformation
                 currentItem.SetCategory(ComboBox.Text);
                 currentItem.SetDefinition(TextBoxDefitnition.Text);
 
+                Trace.WriteLine(DateTime.Now.ToString() + "ButtonEdit clicked.");
                 if (ListView.SelectedItems.Count == 0)
                 {
                     toolStripStatusLabel.Text = "Please select an item to edit";
@@ -296,6 +304,7 @@ namespace WikiInformation
                     Wiki[index].SetDefinition(TextBoxDefitnition.Text);
 
                     toolStripStatusLabel.Text = "Edited the information in Wiki Database.";
+                    Trace.WriteLine("Edit the information in Database.");
                     DisplayListView();
                     ClearResetInput();
                 }
@@ -303,6 +312,7 @@ namespace WikiInformation
             catch (Exception)
             {
                 toolStripStatusLabel.Text = "Error occured while editing the items";
+                //Trace.WriteLine("Error occured while editing the items");
             }                    
         }
         #endregion
@@ -310,8 +320,8 @@ namespace WikiInformation
         #region Sort and Display
         private void SortAndDisplay()
         {
-            Wiki.Sort();
             ListView.Items.Clear();
+            Wiki.Sort();
             foreach (Information info in Wiki)
             {
                 ListViewItem items = new ListViewItem(info.GetName());
@@ -332,6 +342,8 @@ namespace WikiInformation
                 Information findName = new Information();
                 findName.SetName(TextBoxSearch.Text);
                 int found = Wiki.BinarySearch(findName);
+                Trace.Listeners.Add(myTraceListener);
+                Trace.WriteLine("Found" + found);
                 if (found >= 0)
                 {
                     ListView.SelectedItems.Clear();
@@ -347,6 +359,7 @@ namespace WikiInformation
                 }
                 else
                 {
+                    Trace.WriteLine("Items Not Found" + found);
                     toolStripStatusLabel.Text = "Cannot find the Items in Wiki Database";
                     TextBoxSearch.Clear();
                     TextBoxSearch.Focus();
@@ -424,13 +437,16 @@ namespace WikiInformation
             }
             else if (result == DialogResult.Cancel)
             {
+                //put in the default name = global variable at the top
+                //saveFileDialog.FileName = fileName
                 return;
             }            
         }
         private void SaveFile(string fileName)
-        {
+        {            
             try
-            {
+            {           
+                DialogResult = MessageBox.Show("Do you want to save the file?","Confirm Save",MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 using (var stream = File.Open(fileName, FileMode.Create))
                 {
                     using (var writer = new BinaryWriter(stream, Encoding.UTF8, false))
@@ -447,8 +463,7 @@ namespace WikiInformation
             }
             catch (IOException)
             {
-                toolStripStatusLabel.Text = "Could not save Wiki information";
-                //MessageBox.Show("Could not save Wiki information", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                toolStripStatusLabel.Text = "Could not save Wiki information";                
             }
         }
 
@@ -495,8 +510,7 @@ namespace WikiInformation
             }
             catch (IOException)
             {
-                toolStripStatusLabel.Text = "Could not open Wiki Information";
-                //MessageBox.Show("Could not open Wiki Information","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                toolStripStatusLabel.Text = "Could not open Wiki Information file";                
             }            
         }
         #endregion

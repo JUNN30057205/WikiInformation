@@ -12,8 +12,11 @@ namespace WikiInformation
       The class file must have separate setters and getters, add an appropriate IComparable for the Name attribute.
       Save the file class as "Infromation.cs".
     */
+
     internal class Information: IComparable<Information>
     {
+        public Information() { }
+
         const string Default_value = "--";
         //private properties for the fields.
         private string name;
