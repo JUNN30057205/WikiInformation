@@ -35,6 +35,7 @@ namespace WikiInformation
 
         //6.2 a global List<T> of type Information called Wiki.
         List<Information> Wiki = new List<Information>();
+        string defaultFileName = "DefaultWiki.bin";
         //6.3 a button method to ADD a new item to the list (TextBox for the Name input),
         //ComboBox for the Category Radio group for the Structure, Multiline TextBox for the Definition.      
         #region Add
@@ -233,36 +234,34 @@ namespace WikiInformation
             Trace.Listeners.Add(myTraceListener);
             try
             {
-                Trace.WriteLine(DateTime.Now.ToString() + "ButtonDelete clicked.");
+                Trace.WriteLine(DateTime.Now.ToString() + "ButtonDelete Clicked.");
                 if (ListView.SelectedItems.Count == 0)
                 {
                     toolStripStatusLabel.Text = "Please select an item to delete.";
                     return;
                 }
-                DialogResult = MessageBox.Show("Are you sure you want to delete this item?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (DialogResult == DialogResult.Yes)
+                if(ListView.SelectedItems.Count > 0)
                 {
-                    //get the selected item(current item)
-                    ListViewItem currentItem = ListView.SelectedItems[0];
-                    //remove current items from the listview
-                    ListView.Items.Remove(currentItem);                   
-                    foreach (Information info in Wiki)
+                    DialogResult = MessageBox.Show("Are you sure you want to delete this item?", "Confirm Delete", 
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning);                    
+                    if (DialogResult == DialogResult.Yes)
                     {
-                        Trace.WriteLine("Items Deleted in Wiki");                        
-                        if (info.GetName() == currentItem.SubItems[0].Text)
-                        {
-                            //could change to RemoveAt(info);                            
-                            Wiki.Remove(info);
-                            break;
-                        }
+                        //get the index of the first selected item
+                        int selectedIndex = ListView.SelectedIndices[0];
+                        //remove the selected items from the ListView
+                        ListView.Items.RemoveAt(selectedIndex);
+                        //remove the selected items (the same index: from corresponding Information object from the Wiki.)
+                        Wiki.RemoveAt(selectedIndex);                        
+                        toolStripStatusLabel.Text = "Deleted items in Wiki Database.";
+                        Trace.WriteLine("Deleted items in Wiki Database");
                     }
-                    toolStripStatusLabel.Text = "Deleted items in Wiki Database.";
-                    
-                } else
-                {
-                    Trace.WriteLine("Canceled the Deletioin");
-                    toolStripStatusLabel.Text = "Canceled the Deletion.";
+                    else
+                    {
+                        Trace.WriteLine("Canceled the Deletioin");
+                        toolStripStatusLabel.Text = "Canceled the Deletion.";
+                    }
                 }
+                
                 ClearResetInput();
                 DisplayListView();
             }
@@ -422,31 +421,24 @@ namespace WikiInformation
         //All Wiki data is stored/retrieved using a binary reader/writer file format
         #region Button Save and Open
         private void ButtonSave_Click(object sender, EventArgs e)
-        {
-            string fileName = "WikiInfromation.bin";
+        {            
+            string fileName = ".bin";
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.InitialDirectory = Application.StartupPath;
             saveFileDialog.Filter = "Binary files (*.bin, *.dat)| *.bin; *.dat";
             saveFileDialog.Title = "Save your dat file";
 
             DialogResult result = saveFileDialog.ShowDialog();
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 fileName = saveFileDialog.FileName;
                 SaveFile(fileName);
             }
-            else if (result == DialogResult.Cancel)
-            {
-                //put in the default name = global variable at the top
-                //saveFileDialog.FileName = fileName
-                return;
-            }            
         }
         private void SaveFile(string fileName)
-        {            
+        {          
             try
-            {           
-                DialogResult = MessageBox.Show("Do you want to save the file?","Confirm Save",MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            {
                 using (var stream = File.Open(fileName, FileMode.Create))
                 {
                     using (var writer = new BinaryWriter(stream, Encoding.UTF8, false))
@@ -459,8 +451,9 @@ namespace WikiInformation
                             writer.Write(info.GetDefinition());
                         }
                     }
-                }
-            }
+                }            
+                toolStripStatusLabel.Text = "Wiki information saved";
+            }                
             catch (IOException)
             {
                 toolStripStatusLabel.Text = "Could not save Wiki information";                
@@ -469,7 +462,8 @@ namespace WikiInformation
 
         private void ButtonOpen_Click(object sender, EventArgs e)
         {
-            string fileName = "WikiInformation.bin";
+
+            string fileName = ".bin";
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = Application.StartupPath;
             openFileDialog.Filter = "Binary files (*.bin, *.dat)| *.bin; *.dat";
@@ -515,10 +509,15 @@ namespace WikiInformation
         }
         #endregion
         //6.15 The Wiki application will save data when the form closes
+        //**When Form closing: Set the Saved file name as "default File Name" to differentiate from original one.
         #region Form Closing
         private void Wiki_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SaveFile("WikiInformation.bin");
+            DialogResult = MessageBox.Show("Do you want to save the file?","Confirm Save",MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(DialogResult == DialogResult.Yes)
+            {
+                SaveFile(defaultFileName);
+            }
             Trace.Close();
         }
         #endregion
